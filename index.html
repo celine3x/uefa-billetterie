@@ -15,7 +15,84 @@
     <button onclick="switchLang('de')" class="mx-1 px-2 py-1 border rounded bg-white text-sm">DE</button>
   </div>
 
-  <!-- Rest of the content remains the same -->
+  <!-- Banner Image -->
+  <div class="w-full h-64 bg-cover bg-center" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/3/36/Allianz_Arena_2023.jpg');">
+  </div>
+
+  <!-- Header Content -->
+  <div class="text-center mt-10">
+    <h1 class="text-4xl font-bold mb-4" 
+        data-fr="Billetterie pour la Finale de la Ligue des Champions"
+        data-en="Champions League Final Tickets"
+        data-es="Entradas para la Final de la Liga de Campeones"
+        data-de="Tickets für das Champions-League-Finale">
+      Billetterie pour la Finale de la Ligue des Champions
+    </h1>
+    <p class="mb-6 text-lg"
+       data-fr="Réservez vos places pour un événement inoubliable à Munich."
+       data-en="Book your seats for an unforgettable event in Munich."
+       data-es="Reserva tus asientos para un evento inolvidable en Múnich."
+       data-de="Reservieren Sie Ihre Plätze für ein unvergessliches Event in München.">
+      Réservez vos places pour un événement inoubliable à Munich.
+    </p>
+  </div>
+
+  <!-- Ticket Categories -->
+  <div class="max-w-5xl mx-auto mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div class="bg-white rounded shadow p-6 text-center">
+      <h2 class="text-xl font-bold mb-2">Standard</h2>
+      <p class="mb-4">100 €</p>
+      <button onclick="openForm('Standard', '100')" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">Acheter</button>
+    </div>
+    <div class="bg-white rounded shadow p-6 text-center">
+      <h2 class="text-xl font-bold mb-2">Premium</h2>
+      <p class="mb-4">250 €</p>
+      <button onclick="openForm('Premium', '250')" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">Acheter</button>
+    </div>
+    <div class="bg-white rounded shadow p-6 text-center">
+      <h2 class="text-xl font-bold mb-2">VIP</h2>
+      <p class="mb-4">500 €</p>
+      <button onclick="openForm('VIP', '500')" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">Acheter</button>
+    </div>
+  </div>
+
+  <!-- Team Logos -->
+  <div class="flex justify-center items-center mt-10 space-x-8">
+    <img src="https://upload.wikimedia.org/wikipedia/en/0/0c/Paris_Saint-Germain_F.C..svg" alt="PSG" class="h-20">
+    <span class="text-xl font-semibold">VS</span>
+    <img src="https://upload.wikimedia.org/wikipedia/en/0/0b/Inter_Milan.svg" alt="Inter Milan" class="h-20">
+  </div>
+
+  <!-- Formulaire d'achat -->
+  <div id="buyForm" class="hidden fixed top-0 left-0 w-full h-full bg-black bg-opacity-60 flex items-center justify-center z-40">
+    <div class="bg-white p-6 rounded shadow-xl w-96">
+      <h2 class="text-xl font-bold mb-4" 
+          data-fr="Formulaire d'achat"
+          data-en="Purchase Form"
+          data-es="Formulario de compra"
+          data-de="Kaufformular">
+        Formulaire d'achat
+      </h2>
+      <form>
+        <label class="block mb-2 font-semibold" data-fr="Nom complet" data-en="Full Name" data-es="Nombre completo" data-de="Vollständiger Name">Nom complet</label>
+        <input type="text" class="w-full border p-2 mb-4" />
+
+        <label class="block mb-2 font-semibold" data-fr="Email" data-en="Email" data-es="Correo electrónico" data-de="E-Mail">Email</label>
+        <input type="email" class="w-full border p-2 mb-4" />
+
+        <label class="block mb-2 font-semibold" data-fr="Type de billet" data-en="Ticket Type" data-es="Tipo de entrada" data-de="Tickettyp">Type de billet</label>
+        <input type="text" id="ticketType" class="w-full border p-2 mb-4" readonly />
+
+        <label class="block mb-2 font-semibold" data-fr="Prix (€)" data-en="Price (€)" data-es="Precio (€)" data-de="Preis (€)">Prix (€)</label>
+        <input type="text" id="ticketPrice" class="w-full border p-2 mb-4" readonly />
+
+        <div class="flex justify-end space-x-2">
+          <button type="button" onclick="closeForm()" class="bg-gray-300 px-4 py-2 rounded" data-fr="Annuler" data-en="Cancel" data-es="Cancelar" data-de="Abbrechen">Annuler</button>
+          <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded" data-fr="Envoyer" data-en="Submit" data-es="Enviar" data-de="Absenden">Envoyer</button>
+        </div>
+      </form>
+    </div>
+  </div>
 
   <!-- JS -->
   <script>
@@ -36,7 +113,7 @@
       localStorage.setItem('preferredLang', lang);
     }
     window.addEventListener('DOMContentLoaded', () => {
-      const preferredLang = localStorage.getItem('preferredLang') || (navigator.language.startsWith('en') ? 'en' : 'fr');
+      const preferredLang = localStorage.getItem('preferredLang') || (navigator.language.slice(0, 2));
       switchLang(preferredLang);
     });
   </script>
